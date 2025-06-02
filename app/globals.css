@@ -4,6 +4,9 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  --color-main-orange:#EEA141;
+  --color-data-text:#E6E4D4;
+  --color-bg-bage:#E6E4D4;
   --color-navi: #242C40;
   --color-navi-hover: #5C6F9E;
   --color-navi-op: oklch(0.3 0.0383 267.28 / 25%);

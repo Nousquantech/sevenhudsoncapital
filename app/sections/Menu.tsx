@@ -316,183 +316,189 @@ const MenuItems = [
 const Menu = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   return (
-    <header className="bg-white">
-      <nav
-        aria-label="Global"
-        className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
-      >
-        <div className="flex lg:flex-1">
-          <Logo className="h-20 w-auto" />
-        </div>
+    <header className="bg-white w-screen">
+      <div className="mx-auto max-w-7xl md:max-w-7xl">
+        <nav
+          aria-label="Global"
+          className="mx-auto flex  items-center justify-between py-6 lg:px-8"
+        >
+          <div className="flex lg:flex-1">
+            <Logo className="h-20 w-auto" type="primary" />
+          </div>
 
-        {/* Mobile Menu hamburger */}
-        <div className="flex lg:hidden">
-          <button
-            type="button"
-            onClick={() => setMobileMenuOpen(true)}
-            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
-          >
-            <span className="sr-only">Open main menu</span>
-            <Bars3Icon aria-hidden="true" className="size-6" />
-          </button>
-        </div>
-        {/* Main Menu */}
-        <PopoverGroup className="hidden lg:flex lg:gap-x-12">
-          {MenuItems.map((item) => (
-            <Fragment key={item.name}>
-              {item.submenu === false ? (
-                <Link
-                  href={item.href}
-                  className="text-sm/6 font-bold text-navi"
-                >
-                  {item.name}
-                </Link>
-              ) : (
-                <Popover className="relative">
-                  <PopoverButton className="flex items-center gap-x-1 text-sm/6 font-bold text-navi">
-                    {item.name}
-                    <ChevronDownIcon
-                      aria-hidden="true"
-                      className="size-5 flex-none text-navi"
-                    />
-                  </PopoverButton>
-                  <PopoverPanel
-                    transition
-                    className="absolute top-full -left-3 z-10 mt-3 w-auto   overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 transition data-closed:translate-y-1 data-closed:opacity-0 data-enter:duration-200 data-enter:ease-out data-leave:duration-150 data-leave:ease-in"
-                  >
-                    <div className="p-4 ">
-                      <div className="flex flex-row gap-x-6 ">
-                        {item.submenu.map((subitem: any) => (
-                          <div key={subitem.title} className="grow  min-w-3xs">
-                            <p className="p-4 text-navi-op font-bold text-lg">
-                              {subitem.title}
-                            </p>
-                            {subitem.subitems.map((subsubitem: any) => (
-                              <div
-                                key={subsubitem.name}
-                                className="group relative flex items-left gap-x-6 rounded-lg p-4 text-sm/6 hover:bg-gray-50"
-                              >
-                                {subsubitem.icon === false ? (
-                                  ""
-                                ) : (
-                                  <div className="flex size-11  flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                                    <subsubitem.icon
-                                      aria-hidden="true"
-                                      className="size-6 text-navi group-hover:text-navi-hover"
-                                    />
-                                  </div>
-                                )}
-                                <div className="flex-auto">
-                                  <Link
-                                    href={item.href}
-                                    className="block font-bold text-navi text-lg"
-                                  >
-                                    {subsubitem.name}
-                                    <span className="absolute inset-0" />
-                                  </Link>
-                                  {subsubitem.description === false ? (
-                                    ""
-                                  ) : (
-                                    <p className="mt-1 text-navi text-sm w-80">
-                                      {subsubitem.description}
-                                    </p>
-                                  )}
-                                </div>
-                              </div>
-                            ))}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </PopoverPanel>
-                </Popover>
-              )}
-            </Fragment>
-          ))}
-        </PopoverGroup>
-
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <Link href="#">
-            <MagnifyingGlassIcon className="size-5 text-navi" />
-          </Link>
-        </div>
-      </nav>
-      {/* Mobile Menu */}
-      {/* <Dialog
-        open={mobileMenuOpen}
-        onClose={setMobileMenuOpen}
-        className="lg:hidden"
-      >
-        <div className="fixed inset-0 z-10" />
-        <DialogPanel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
-          <div className="flex items-center justify-between">
-            <Logo className="h-8 w-auto" />
+          {/* Mobile Menu hamburger */}
+          <div className="flex lg:hidden">
             <button
               type="button"
-              onClick={() => setMobileMenuOpen(false)}
-              className="-m-2.5 rounded-md p-2.5 text-gray-700"
+              onClick={() => setMobileMenuOpen(true)}
+              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
             >
-              <span className="sr-only">Close menu</span>
-              <XMarkIcon aria-hidden="true" className="size-6" />
+              <span className="sr-only">Open main menu</span>
+              <Bars3Icon aria-hidden="true" className="size-6" />
             </button>
           </div>
-          <div className="mt-6 flow-root">
-            <div className="-my-6 divide-y divide-gray-500/10">
-              <div className="space-y-2 py-6">
-                <Disclosure as="div" className="-mx-3">
-                  <DisclosureButton className="group flex w-full items-center justify-between rounded-lg py-2 pr-3.5 pl-3 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">
-                    Product
-                    <ChevronDownIcon
-                      aria-hidden="true"
-                      className="size-5 flex-none group-data-open:rotate-180"
-                    />
-                  </DisclosureButton>
-                  <DisclosurePanel className="mt-2 space-y-2">
-                    {[...products, ...callsToAction].map((item) => (
-                      <DisclosureButton
-                        key={item.name}
-                        as="a"
-                        href={item.href}
-                        className="block rounded-lg py-2 pr-3 pl-6 text-sm/7 font-semibold text-gray-900 hover:bg-gray-50"
-                      >
-                        {item.name}
-                      </DisclosureButton>
-                    ))}
-                  </DisclosurePanel>
-                </Disclosure>
-                <Link
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
-                >
-                  Features
-                </Link>
-                <Link
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
-                >
-                  Marketplace
-                </Link>
-                <Link
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
-                >
-                  Company
-                </Link>
-              </div>
-              <div className="py-6">
-                <Link
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
-                >
-                  Log in
-                </Link>
-              </div>
-            </div>
+          {/* Main Menu */}
+          <PopoverGroup className="hidden lg:flex lg:gap-x-12">
+            {MenuItems.map((item) => (
+              <Fragment key={item.name}>
+                {item.submenu === false ? (
+                  <Link
+                    href={item.href}
+                    className="text-sm/6 font-bold text-navi"
+                  >
+                    {item.name}
+                  </Link>
+                ) : (
+                  <Popover className="relative">
+                    <PopoverButton className="flex items-center gap-x-1 text-sm/6 font-bold text-navi">
+                      {item.name}
+                      <ChevronDownIcon
+                        aria-hidden="true"
+                        className="size-5 flex-none text-navi"
+                      />
+                    </PopoverButton>
+                    <PopoverPanel
+                      transition
+                      className="absolute top-full -left-3 z-10 mt-3 w-auto   overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 transition data-closed:translate-y-1 data-closed:opacity-0 data-enter:duration-200 data-enter:ease-out data-leave:duration-150 data-leave:ease-in"
+                    >
+                      <div className="p-4 ">
+                        <div className="flex flex-row gap-x-6 ">
+                          {Array.isArray(item.submenu) &&
+                            item.submenu.map((subitem: any) => (
+                              <div
+                                key={subitem.title}
+                                className="grow  min-w-3xs"
+                              >
+                                <p className="p-4 text-navi-op font-bold text-lg">
+                                  {subitem.title}
+                                </p>
+                                {subitem.subitems.map((subsubitem: any) => (
+                                  <div
+                                    key={subsubitem.name}
+                                    className="group relative flex items-left gap-x-6 rounded-lg p-4 text-sm/6 hover:bg-gray-50"
+                                  >
+                                    {subsubitem.icon === false ? (
+                                      ""
+                                    ) : (
+                                      <div className="flex size-11  flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                                        <subsubitem.icon
+                                          aria-hidden="true"
+                                          className="size-6 text-navi group-hover:text-navi-hover"
+                                        />
+                                      </div>
+                                    )}
+                                    <div className="flex-auto">
+                                      <Link
+                                        href={item.href}
+                                        className="block font-bold text-navi text-lg"
+                                      >
+                                        {subsubitem.name}
+                                        <span className="absolute inset-0" />
+                                      </Link>
+                                      {subsubitem.description === false ? (
+                                        ""
+                                      ) : (
+                                        <p className="mt-1 text-navi text-sm w-80">
+                                          {subsubitem.description}
+                                        </p>
+                                      )}
+                                    </div>
+                                  </div>
+                                ))}
+                              </div>
+                            ))}
+                        </div>
+                      </div>
+                    </PopoverPanel>
+                  </Popover>
+                )}
+              </Fragment>
+            ))}
+          </PopoverGroup>
+
+          <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+            <Link href="#">
+              <MagnifyingGlassIcon className="size-5 text-navi" />
+            </Link>
           </div>
-        </DialogPanel>
-      </Dialog> */}
+        </nav>
+      </div>
     </header>
   );
 };
 
 export default Menu;
+//  Mobile Menu
+// <Dialog
+//         open={mobileMenuOpen}
+//         onClose={setMobileMenuOpen}
+//         className="lg:hidden"
+//       >
+//         <div className="fixed inset-0 z-10" />
+//         <DialogPanel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+//           <div className="flex items-center justify-between">
+//             <Logo className="h-8 w-auto" />
+//             <button
+//               type="button"
+//               onClick={() => setMobileMenuOpen(false)}
+//               className="-m-2.5 rounded-md p-2.5 text-gray-700"
+//             >
+//               <span className="sr-only">Close menu</span>
+//               <XMarkIcon aria-hidden="true" className="size-6" />
+//             </button>
+//           </div>
+//           <div className="mt-6 flow-root">
+//             <div className="-my-6 divide-y divide-gray-500/10">
+//               <div className="space-y-2 py-6">
+//                 <Disclosure as="div" className="-mx-3">
+//                   <DisclosureButton className="group flex w-full items-center justify-between rounded-lg py-2 pr-3.5 pl-3 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">
+//                     Product
+//                     <ChevronDownIcon
+//                       aria-hidden="true"
+//                       className="size-5 flex-none group-data-open:rotate-180"
+//                     />
+//                   </DisclosureButton>
+//                   <DisclosurePanel className="mt-2 space-y-2">
+//                     {[...products, ...callsToAction].map((item) => (
+//                       <DisclosureButton
+//                         key={item.name}
+//                         as="a"
+//                         href={item.href}
+//                         className="block rounded-lg py-2 pr-3 pl-6 text-sm/7 font-semibold text-gray-900 hover:bg-gray-50"
+//                       >
+//                         {item.name}
+//                       </DisclosureButton>
+//                     ))}
+//                   </DisclosurePanel>
+//                 </Disclosure>
+//                 <Link
+//                   href="#"
+//                   className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
+//                 >
+//                   Features
+//                 </Link>
+//                 <Link
+//                   href="#"
+//                   className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
+//                 >
+//                   Marketplace
+//                 </Link>
+//                 <Link
+//                   href="#"
+//                   className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
+//                 >
+//                   Company
+//                 </Link>
+//               </div>
+//               <div className="py-6">
+//                 <Link
+//                   href="#"
+//                   className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
+//                 >
+//                   Log in
+//                 </Link>
+//               </div>
+//             </div>
+//           </div>
+//         </DialogPanel>
+//       </Dialog>

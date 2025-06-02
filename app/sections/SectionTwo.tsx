@@ -1,7 +1,37 @@
 import React from "react";
+import Research from "../components/Research";
+import Container from "../components/Container";
 
 const SectionTwo = () => {
-  return <div>SectionTwo</div>;
+  return (
+    <Container bgColor="bg-main-orange">
+      <div className="flex flex-col">
+        <div className=" py-1 justify-right">
+          <span className="text-white">Featured Research</span>
+        </div>
+        <div className="flex flex-row w-full justify-between mt-4">
+          <Research
+            photo="/research1.jpg"
+            date="16 April 2025"
+            author="Miranda Voss"
+            mainText="Tariffs and the Tipping Point: Recession in Slow Motion"
+          />
+          <Research
+            photo="/research2.jpg"
+            date="3 February 2025"
+            author="Darren Flint"
+            mainText="ETF Echoes: How Trade Wars Are Reshaping Passive Investing"
+          />
+          <Research
+            photo="/research3.jpg"
+            date="14 January 2025"
+            author="Amira Chen"
+            mainText="Ghosts in the Code: AI Risk and the Tech Collapse"
+          />
+        </div>
+      </div>
+    </Container>
+  );
 };
 
 export default SectionTwo;
