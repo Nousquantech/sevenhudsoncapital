@@ -7,8 +7,11 @@ interface ContainerProps {
 
 const Container = ({ bgColor, children }: ContainerProps) => {
   return (
-    <div className={`w-screen ${bgColor}`}>
-      <div className="mx-auto max-w-7xl md:max-w-7xl">{children}</div>
+    <div className={bgColor}>
+      {/* <div className={`w-screen ${bgColor}`}> */}
+      <div className="mx-auto xl:max-w-7xl lg:max-w-5xl sm:max-w-sm">
+        {children}
+      </div>
     </div>
   );
 };

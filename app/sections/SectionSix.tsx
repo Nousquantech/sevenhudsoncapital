@@ -5,7 +5,7 @@ import Container from "../components/Container";
 const SectionSix = () => {
   return (
     <Container bgColor="bg-bg-bage">
-      <div className="grid grid-cols-4 gap-3 justify-center py-24">
+      <div className="grid grid-cols-4 gap-3 justify-center py-24 lg:px-8 ">
         <CardFour
           pict="/card61.png"
           title="Cloud-Based Solutions"

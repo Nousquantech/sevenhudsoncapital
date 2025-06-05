@@ -5,8 +5,8 @@ import Container from "../components/Container";
 const SectionFive = () => {
   return (
     <Container bgColor="bg-white">
-      <div className=" flex flex-col justify-center items-center">
-        <div className="flex flex-col justify-center items-center gap-2 py-10 px-44">
+      <div className=" flex flex-col justify-center items-center lg:px-8">
+        <div className="flex flex-col justify-center items-center gap-2 py-10 lx:px-44 lg:px-20">
           <span className="text-navi text-4xl font-bold">
             Investment Research Solutions Offered by 7HC.
           </span>

@@ -4,7 +4,7 @@ import Container from "../components/Container";
 const SectionThree = () => {
   return (
     <Container bgColor="bg-white">
-      <div className="flex flex-col justify-center items-center gap-6 h-full w-full py-24">
+      <div className="flex flex-col justify-center items-center gap-6 h-full w-full py-24 md:px-8">
         <div className="h-fit justify-center">
           <div className="text-navi tact-bold text-4xl text-center">
             Why Our Investment Research Stands Apart?

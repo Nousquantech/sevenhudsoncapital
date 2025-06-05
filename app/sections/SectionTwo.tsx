@@ -5,7 +5,7 @@ import Container from "../components/Container";
 const SectionTwo = () => {
   return (
     <Container bgColor="bg-main-orange">
-      <div className="flex flex-col">
+      <div className="flex flex-col md:px-8">
         <div className=" py-1 justify-right">
           <span className="text-white">Featured Research</span>
         </div>
