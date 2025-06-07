@@ -24,8 +24,8 @@ const CardFive = ({
   return (
     <>
       {type === "left" ? (
-        <Container bgColor="bg-bg-bage">
-          <div className="flex flex-row justify-center my-5 gap-10">
+        <div className="bg-bg-bage w-full">
+          <div className="flex flex-col lg:flex-row justify-center my-5 gap-10 mx-8 lg:mx-0">
             <Image
               src={icn}
               alt="icon"
@@ -33,10 +33,14 @@ const CardFive = ({
               height={209}
               objectFit="cover"
             />
-            <div className="flex flex-col justify-center items-start gap-5 max-w-[521px]">
-              <div>
-                <div className="text-navi font-bold text-2xl">{title}</div>
-                <div className="text-navi font-bold text-base">{subtitle}</div>
+            <div className="flex flex-col justify-center items-center lg:items-start  gap-5 max-w-[521px]">
+              <div className="flex flex-col gap-5">
+                <div className="text-navi font-bold text-2xl text-center lg:text-left">
+                  {title}
+                </div>
+                <div className="text-navi font-bold text-base text-center lg:text-left">
+                  {subtitle}
+                </div>
                 <div className="text-navi text-sm">{mainText}</div>
               </div>
               <Link
@@ -47,14 +51,27 @@ const CardFive = ({
               </Link>
             </div>
           </div>
-        </Container>
+        </div>
       ) : (
-        <Container bgColor="bg-white">
-          <div className="flex flex-row justify-center my-5 gap-10">
-            <div className="flex flex-col justify-center items-start gap-5 max-w-[521px]">
-              <div>
-                <div className="text-navi font-bold text-2xl">{title}</div>
-                <div className="text-navi font-bold text-base">{subtitle}</div>
+        <div className="bg-white">
+          <div className="flex flex-col lg:flex-row justify-center my-5 gap-10 mx-8 lg:mx-0">
+            <div className="lg:hidden ">
+              <Image
+                src={icn}
+                alt="icon"
+                width={521}
+                height={209}
+                objectFit="cover"
+              />
+            </div>
+            <div className="flex flex-col justify-center items-center lg:items-start gap-5 max-w-[521px]">
+              <div className="flex flex-col gap-5">
+                <div className="text-navi font-bold text-2xl text-center lg:text-left">
+                  {title}
+                </div>
+                <div className="text-navi font-bold text-base text-center lg:text-left">
+                  {subtitle}
+                </div>
                 <div className="text-navi text-sm">{mainText}</div>
               </div>
               <Link
@@ -64,15 +81,17 @@ const CardFive = ({
                 <div className="text-white font-bold text-base">LEARN MORE</div>
               </Link>
             </div>
-            <Image
-              src={icn}
-              alt="icon"
-              width={521}
-              height={209}
-              objectFit="cover"
-            />
+            <div className="hidden lg:block">
+              <Image
+                src={icn}
+                alt="icon"
+                width={521}
+                height={209}
+                objectFit="cover"
+              />
+            </div>
           </div>
-        </Container>
+        </div>
       )}
     </>
   );

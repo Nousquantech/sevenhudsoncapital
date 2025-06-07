@@ -3,10 +3,11 @@ import { Container, Copyrights, BottomMenu, Logo } from "@/app/components";
 const Footer = () => {
   return (
     <Container bgColor="bg-main-orange">
-      <div className="flex flex-col gap-5 py-5 lg:px-8">
-        <div className="flex flex-row justify-between">
+      <div className="flex flex-col gap-5 py-5 px-8">
+        <div className="flex flex-col items-center lg:items-start lg:flex-row justify-center lg:justify-between">
           <Logo className="w-32 h-32" type="secondary" />
-          <div className="flex flex-col mx-auto w-full h-full gap-2 py-8">
+
+          <div className="flex flex-col mx-auto w-full h-full gap-2 py-8 lg:block hidden">
             <div className="text-xl text-white font-bold text-right">
               Translating Numbers into Strategy
             </div>

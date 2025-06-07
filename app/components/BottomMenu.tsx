@@ -41,7 +41,7 @@ const MenuItems = [
 ];
 const BottomMenu = () => {
   return (
-    <div className="grid grid-cols-4 gap-3 justify-center py-6">
+    <div className="grid grid-cols-1 lg:grid-cols-4 gap-3 justify-center py-6">
       {MenuItems.map((item) => (
         <div key={item.title} className="mb-1">
           <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>

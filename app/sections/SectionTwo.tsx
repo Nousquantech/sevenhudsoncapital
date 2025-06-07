@@ -5,11 +5,11 @@ import Container from "../components/Container";
 const SectionTwo = () => {
   return (
     <Container bgColor="bg-main-orange">
-      <div className="flex flex-col md:px-8">
-        <div className=" py-1 justify-right">
-          <span className="text-white">Featured Research</span>
+      <div className="flex flex-col px-8  lg:px-8">
+        <div className=" py-3 justify-right text-center lg:text-left">
+          <span className="text-white ">Featured Research</span>
         </div>
-        <div className="flex flex-row w-full justify-between mt-4">
+        <div className="flex flex-col gap-6 lg:gap-0 lg:flex-row w-full justify-between my-4">
           <Research
             photo="/research1.jpg"
             date="16 April 2025"

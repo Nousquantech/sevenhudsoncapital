@@ -13,17 +13,23 @@ interface ResearchProps {
 const Research = ({ photo, date, author, mainText }: ResearchProps) => {
   return (
     <Link href="/">
-      <div className="flex flex-row gap-1 h-fit">
-        <div className="flex flex-col justify-start">
+      <div className="flex lg:flex-row flex-col gap-1 h-fit">
+        <div className="flex flex-col items-center lg:justify-start">
           <Image src={photo} alt="research" width={96} height={96} />
-          <span className="text-xs text-data-text">{date}</span>
+          <span className="text-xs text-data-text hidden lg:block">{date}</span>
         </div>
-        <div className="flex flex-col justify-start gap-1">
+        {/* TODO: Change cards design */}
+        <div className="flex flex-col items-center lg:justify-start gap-1">
           <div className="text-data-text text-sm">{author}</div>
-          <div className="text-navi max-w-58 font-bold text-base">
+          <div className="text-navi max-w-58 font-bold text-base text-center lg:text-left">
             {mainText}
           </div>
-          <FaArrowRight style={{ width: "25", height: "25" }} color="white" />
+          <div className=" flex flex-row gap-1">
+            <span className="text-white max-w-58 font-bold text-base text-center lg:text-left">
+              Read more
+            </span>
+            <FaArrowRight style={{ width: "25", height: "25" }} color="white" />
+          </div>
         </div>
       </div>
     </Link>
