@@ -1,6 +1,5 @@
 import React from "react";
-import CardFour from "../components/CardFour";
-import Container from "../components/Container";
+import { Container, CardFour } from "@/components/index";
 
 const SectionFour = () => {
   return (

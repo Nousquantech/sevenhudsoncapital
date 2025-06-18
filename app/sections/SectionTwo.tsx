@@ -1,6 +1,5 @@
 import React from "react";
-import Research from "../components/Research";
-import Container from "../components/Container";
+import { Container, Research } from "@/components/index";
 
 const SectionTwo = () => {
   return (
