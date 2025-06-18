@@ -1,4 +1,4 @@
-import { Container, Copyrights, BottomMenu, Logo } from "@/app/components";
+import { Container, Copyrights, BottomMenu, Logo } from "@/components/index";
 
 const Footer = () => {
   return (

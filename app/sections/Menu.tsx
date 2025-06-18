@@ -42,7 +42,7 @@ import {
   PlayCircleIcon,
 } from "@heroicons/react/20/solid";
 import Link from "next/link";
-import Logo from "../components/Logo";
+import Logo from "@/components/Logo";
 
 const MenuItems = [
   {
@@ -349,66 +349,74 @@ const Menu = () => {
                   </Link>
                 ) : (
                   <Popover className="relative">
-                    <PopoverButton className="flex items-center gap-x-1 text-sm/6 font-bold text-navi">
-                      {item.name}
-                      <ChevronDownIcon
-                        aria-hidden="true"
-                        className="size-5 flex-none text-navi"
-                      />
-                    </PopoverButton>
-                    <PopoverPanel
-                      transition
-                      className="absolute top-full -left-3 z-10 mt-3 w-auto   overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 transition data-closed:translate-y-1 data-closed:opacity-0 data-enter:duration-200 data-enter:ease-out data-leave:duration-150 data-leave:ease-in"
-                    >
-                      <div className="p-4 ">
-                        <div className="flex flex-row gap-x-6 ">
-                          {Array.isArray(item.submenu) &&
-                            item.submenu.map((subitem: any) => (
-                              <div
-                                key={subitem.title}
-                                className="grow  min-w-3xs"
-                              >
-                                <p className="p-4 text-navi-op font-bold text-lg">
-                                  {subitem.title}
-                                </p>
-                                {subitem.subitems.map((subsubitem: any) => (
+                    {({ open }) => (
+                      <>
+                        <PopoverButton className="flex items-center gap-x-1 text-sm/6 font-bold text-navi">
+                          {item.name}
+                          <ChevronDownIcon
+                            aria-hidden="true"
+                            className={
+                              open
+                                ? "rotate-180 transform size-5 flex-none text-navi"
+                                : "size-5 flex-none text-navi"
+                            }
+                          />
+                        </PopoverButton>
+                        <PopoverPanel
+                          transition
+                          className="absolute top-full -left-3 z-10 mt-3 w-auto   overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 transition data-closed:translate-y-1 data-closed:opacity-0 data-enter:duration-200 data-enter:ease-out data-leave:duration-150 data-leave:ease-in"
+                        >
+                          <div className="p-4 ">
+                            <div className="flex flex-row gap-x-6 ">
+                              {Array.isArray(item.submenu) &&
+                                item.submenu.map((subitem: any) => (
                                   <div
-                                    key={subsubitem.name}
-                                    className="group relative flex items-left gap-x-6 rounded-lg p-4 text-sm/6 hover:bg-gray-50"
+                                    key={subitem.title}
+                                    className="grow  min-w-3xs"
                                   >
-                                    {subsubitem.icon === false ? (
-                                      ""
-                                    ) : (
-                                      <div className="flex size-11  flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                                        <subsubitem.icon
-                                          aria-hidden="true"
-                                          className="size-6 text-navi group-hover:text-navi-hover"
-                                        />
-                                      </div>
-                                    )}
-                                    <div className="flex-auto">
-                                      <Link
-                                        href={item.href}
-                                        className="block font-bold text-navi text-lg"
+                                    <p className="p-4 text-navi-op font-bold text-lg">
+                                      {subitem.title}
+                                    </p>
+                                    {subitem.subitems.map((subsubitem: any) => (
+                                      <div
+                                        key={subsubitem.name}
+                                        className="group relative flex items-left gap-x-6 rounded-lg p-4 text-sm/6 hover:bg-gray-50"
                                       >
-                                        {subsubitem.name}
-                                        <span className="absolute inset-0" />
-                                      </Link>
-                                      {subsubitem.description === false ? (
-                                        ""
-                                      ) : (
-                                        <p className="mt-1 text-navi text-sm w-80">
-                                          {subsubitem.description}
-                                        </p>
-                                      )}
-                                    </div>
+                                        {subsubitem.icon === false ? (
+                                          ""
+                                        ) : (
+                                          <div className="flex size-11  flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                                            <subsubitem.icon
+                                              aria-hidden="true"
+                                              className="size-6 text-navi group-hover:text-navi-hover"
+                                            />
+                                          </div>
+                                        )}
+                                        <div className="flex-auto">
+                                          <Link
+                                            href={item.href}
+                                            className="block font-bold text-navi text-lg"
+                                          >
+                                            {subsubitem.name}
+                                            <span className="absolute inset-0" />
+                                          </Link>
+                                          {subsubitem.description === false ? (
+                                            ""
+                                          ) : (
+                                            <p className="mt-1 text-navi text-sm w-80">
+                                              {subsubitem.description}
+                                            </p>
+                                          )}
+                                        </div>
+                                      </div>
+                                    ))}
                                   </div>
                                 ))}
-                              </div>
-                            ))}
-                        </div>
-                      </div>
-                    </PopoverPanel>
+                            </div>
+                          </div>
+                        </PopoverPanel>
+                      </>
+                    )}
                   </Popover>
                 )}
               </Fragment>
