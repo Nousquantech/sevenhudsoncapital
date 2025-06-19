@@ -25,9 +25,7 @@ export default function RootLayout({
       <body className={`${EB_GaramondFont.className}  antialiased`}>
         {children}
       </body>
-      {process.env.NEXT_PUBLIC_MEASUREMENT_ID && (
-        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_MEASUREMENT_ID} />
-      )}
+      <GoogleAnalytics gaId="G-PFJGKKVZCJ" />
     </html>
   );
 }
