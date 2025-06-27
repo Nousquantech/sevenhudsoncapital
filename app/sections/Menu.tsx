@@ -131,10 +131,11 @@ const Menu = () => {
                                             )}
                                             <div className="flex-auto">
                                               <Link
-                                                href={item.href}
+                                                href={subsubitem.href}
                                                 className="block font-bold text-navi text-lg"
                                               >
                                                 {subsubitem.name}
+
                                                 <span className="absolute inset-0" />
                                               </Link>
                                               {subsubitem.description && (
@@ -210,7 +211,7 @@ const Menu = () => {
                                   >
                                     <div className="flex-auto">
                                       <Link
-                                        href={item.href}
+                                        href={subsubitem.href}
                                         className="block font-bold text-navi text-md"
                                       >
                                         {subsubitem.name}
