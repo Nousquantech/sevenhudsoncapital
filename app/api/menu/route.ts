@@ -3,6 +3,7 @@ import Menu from "@/models/Menu";
 import { NextResponse } from "next/server";
 
 export async function GET() {
+  console.log("Fetching menus...");
   let menus;
   try {
     await connectDB();

@@ -24,6 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${EB_GaramondFont.className}  antialiased`}>
+        <Menu />
         {children}
         <Footer />
       </body>
