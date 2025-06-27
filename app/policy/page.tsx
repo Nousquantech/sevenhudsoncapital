@@ -86,7 +86,7 @@ const policePage = () => {
         <h2 className="text-2xl font-bold text-navi py-3">
           4. Sharing Your Personal Data
         </h2>
-        <p>We may share data with:</p>
+        <p className="text-base">We may share data with:</p>
         <ul>
           <li>Internal affiliates or departments</li>
           <li>Service providers (IT, hosting, payment, logistics)</li>
