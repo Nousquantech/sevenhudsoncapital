@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { EB_Garamond } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { Footer, Menu } from "./sections";
 
 import "./globals.css";
 
@@ -23,7 +24,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${EB_GaramondFont.className}  antialiased`}>
+        <Menu />
         {children}
+        <Footer />
       </body>
       <GoogleAnalytics gaId="G-PFJGKKVZCJ" />
     </html>

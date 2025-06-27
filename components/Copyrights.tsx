@@ -9,7 +9,7 @@ const Copyrights = () => {
       <div className="text-base lg:text-xl">
         &copy; Copyright {currentYear}, 7HC. All Right Reserved
       </div>
-      <Link href="/" className="text-base lg:text-xl">
+      <Link href="/policy" className="text-base lg:text-xl">
         Privacy Policy
       </Link>
       <div className="flex flex-row gap-4 items-center">
