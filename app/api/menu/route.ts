@@ -2,8 +2,7 @@ import connectDB from "@/lib/mongoose";
 import Menu from "@/models/Menu";
 import { NextResponse } from "next/server";
 
-export async function GET() {
-  console.log("Fetching menus...");
+export async function GET() {  
   let menus;
   try {
     await connectDB();
