@@ -1,5 +1,6 @@
 import React from "react";
 import { Container } from "@/components/index";
+import { Metadata } from "next";
 
 const policePage = () => {
   return (
@@ -169,3 +170,6 @@ const policePage = () => {
 };
 
 export default policePage;
+export const metadata: Metadata = {
+  title: "Privacy Notice",
+};
