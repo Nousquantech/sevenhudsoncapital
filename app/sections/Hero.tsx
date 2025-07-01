@@ -6,7 +6,7 @@ import { Container, Button } from "@/components/index";
 const Hero = () => {
   return (
     <Container bgColor="bg-bg-bage">
-      <div className="relative w-full py-3 h-[150] lg:h-[465px]">
+      <div className="relative w-full py-3 h-[150] lg:h-[465px] z-10">
         <Image src="/Banner.jpg" alt="Hero" fill={true} loading="lazy" />
       </div>
       {/* <div className=" flex flex-col-reverse lg:flex-row  lg:py-24 py-6">

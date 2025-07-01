@@ -1,12 +1,8 @@
 "use client";
 
 import { useState, Fragment, useEffect } from "react";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-
 import * as HiIcon from "react-icons/hi";
 import * as HiIcon2 from "react-icons/hi2";
-import { DynamicIcon, Logo } from "@/components/index";
 
 import {
   Dialog,
@@ -20,22 +16,13 @@ import {
   PopoverPanel,
 } from "@headlessui/react";
 
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuIndicator,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
-  NavigationMenuViewport,
-} from "@/components/ui/navigation-menu";
+import Link from "next/link";
+import Logo from "@/components/Logo";
+import { useRouter } from "next/navigation";
 
 const Menu = () => {
   const router = useRouter();
   const [items, setItems] = useState<any | []>([]);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // Fetch menu items from the API
   const getItemsData = () => {
@@ -52,6 +39,18 @@ const Menu = () => {
   useEffect(() => {
     getItemsData();
   }, []);
+
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  //Dynamic icons based on the icon name
+  const DynamicIcon = (iconName: string) => {
+    const IconComponent = HiIcon[iconName as keyof typeof HiIcon];
+    return IconComponent ? (
+      <IconComponent
+        className="size-6 text-navi group-hover:text-navi-hover"
+        aria-hidden="true"
+      />
+    ) : null;
+  };
 
   return (
     <header className="bg-white">
@@ -75,79 +74,91 @@ const Menu = () => {
             </button>
           </div>
           {/* Main Menu */}
-          <NavigationMenu viewport={false}>
-            <NavigationMenuList>
-              {items &&
-                items.length > 0 &&
-                items.map((item: any) => (
-                  <NavigationMenuItem key={item.name}>
-                    {item.isSubmenu === false ? (
-                      <NavigationMenuLink asChild>
-                        <Link
-                          href={item.href}
-                          className="text-sm/6 font-bold text-navi"
-                        >
-                          {item.name}
-                        </Link>
-                      </NavigationMenuLink>
-                    ) : (
-                      <>
-                        <NavigationMenuTrigger>
-                          {item.name}
-                        </NavigationMenuTrigger>
-                        <NavigationMenuContent className="relative z-50">
-                          <div className="p-4 ">
-                            <div className="flex flex-row gap-x-6 ">
-                              {Array.isArray(item.submenu) &&
-                                item.submenu.map((subitem: any) => (
-                                  <div
-                                    key={subitem.title}
-                                    className="grow  min-w-3xs"
-                                  >
-                                    <p className="p-4 text-navi-op font-bold text-lg">
-                                      {subitem.title}
-                                    </p>
-                                    {subitem.subitems.map((subsubitem: any) => (
-                                      <div
-                                        key={subsubitem.name}
-                                        className="group relative flex items-left gap-x-6 rounded-lg p-4 text-sm/6 hover:bg-gray-50"
-                                      >
-                                        {subsubitem.icon && (
-                                          <div className="flex size-11  flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                                            <DynamicIcon
-                                              iconName={subsubitem.icon}
-                                            />
-                                          </div>
-                                        )}
-                                        <div className="flex-auto">
-                                          <Link
-                                            href={subsubitem.href}
-                                            className="block font-bold text-navi text-lg"
+          <PopoverGroup className="hidden lg:flex lg:gap-x-12">
+            {items &&
+              items.length > 0 &&
+              items.map((item: any) => (
+                <Fragment key={item.name}>
+                  {item.isSubmenu === false ? (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      className="text-sm/6 font-bold text-navi"
+                    >
+                      {item.name}
+                    </Link>
+                  ) : (
+                    <Popover className="relative">
+                      {({ open }) => (
+                        <>
+                          <PopoverButton className="flex items-center gap-x-1 text-sm/6 font-bold text-navi">
+                            {item.name}
+
+                            <HiIcon.HiChevronDown
+                              aria-hidden="true"
+                              className={
+                                open
+                                  ? "rotate-180 transform size-5 flex-none text-navi"
+                                  : "size-5 flex-none text-navi"
+                              }
+                            />
+                          </PopoverButton>
+                          <PopoverPanel
+                            transition
+                            className="absolute top-full -left-3 z-10 mt-3 w-auto   overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 transition data-closed:translate-y-1 data-closed:opacity-0 data-enter:duration-200 data-enter:ease-out data-leave:duration-150 data-leave:ease-in"
+                          >
+                            <div className="p-4 ">
+                              <div className="flex flex-row gap-x-6 ">
+                                {Array.isArray(item.submenu) &&
+                                  item.submenu.map((subitem: any) => (
+                                    <div
+                                      key={subitem.title}
+                                      className="grow  min-w-3xs"
+                                    >
+                                      <p className="p-4 text-navi-op font-bold text-lg">
+                                        {subitem.title}
+                                      </p>
+                                      {subitem.subitems.map(
+                                        (subsubitem: any) => (
+                                          <div
+                                            key={subsubitem.name}
+                                            className="group relative flex items-left gap-x-6 rounded-lg p-4 text-sm/6 hover:bg-gray-50"
                                           >
-                                            {subsubitem.name}
+                                            {subsubitem.icon && (
+                                              <div className="flex size-11  flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                                                {DynamicIcon(subsubitem.icon)}
+                                              </div>
+                                            )}
+                                            <div className="flex-auto">
+                                              <Link
+                                                href={subsubitem.href}
+                                                className="block font-bold text-navi text-lg"
+                                              >
+                                                {subsubitem.name}
 
-                                            <span className="absolute inset-0" />
-                                          </Link>
-                                          {subsubitem.description && (
-                                            <p className="mt-1 text-navi text-sm w-80">
-                                              {subsubitem.description}
-                                            </p>
-                                          )}
-                                        </div>
-                                      </div>
-                                    ))}
-                                  </div>
-                                ))}
+                                                <span className="absolute inset-0" />
+                                              </Link>
+                                              {subsubitem.description && (
+                                                <p className="mt-1 text-navi text-sm w-80">
+                                                  {subsubitem.description}
+                                                </p>
+                                              )}
+                                            </div>
+                                          </div>
+                                        )
+                                      )}
+                                    </div>
+                                  ))}
+                              </div>
                             </div>
-                          </div>
-                        </NavigationMenuContent>
-                      </>
-                    )}
-                  </NavigationMenuItem>
-                ))}
-            </NavigationMenuList>
-          </NavigationMenu>
-
+                          </PopoverPanel>
+                        </>
+                      )}
+                    </Popover>
+                  )}
+                </Fragment>
+              ))}
+          </PopoverGroup>
           {/* Mobile Menu */}
           <Dialog
             open={mobileMenuOpen}
