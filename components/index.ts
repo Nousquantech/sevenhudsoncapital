@@ -8,6 +8,7 @@ import CardSix from "@/components/CardSix";
 import Logo from "@/components/Logo";
 import MenuLink from "@/components/MenuLink";
 import Research from "@/components/Research";
+import DynamicIcon from "@/components/DynamicIcon";
 
 
 export {
@@ -20,5 +21,6 @@ export {
     CardSix,
     Logo,
     MenuLink,
-    Research
+    Research,
+    DynamicIcon
 };
