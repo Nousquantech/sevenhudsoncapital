@@ -93,7 +93,9 @@ const Menu = () => {
                     ) : (
                       <>
                         <NavigationMenuTrigger>
-                          {item.name}
+                          <div className="text-sm/6 font-bold text-navi">
+                            {item.name}
+                          </div>
                         </NavigationMenuTrigger>
                         <NavigationMenuContent className="relative z-50">
                           <div className="p-4 ">
