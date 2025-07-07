@@ -1,26 +1,14 @@
-"use client";
-import { useForm } from "react-hook-form";
+import ContactForm from "@/components/ContactForm";
 import { Metadata } from "next";
-import React from "react";
 
 const contactusNosPagina = () => {
-  const { register, handleSubmit, reset } = useForm();
-
-  const onSubmit = async (data: any) => {
-    const res = await fetch("/api/email", {
-      method: "POST",
-      body: JSON.stringify(data),
-    });
-    if (res.ok) reset();
-  };
-
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="...">
-      <input {...register("name")} required placeholder="Name" />
-      <input {...register("email")} type="email" required placeholder="Email" />
-      <textarea {...register("message")} required placeholder="Message" />
-      <button type="submit">Send</button>
-    </form>
+    <div className=" p-6 bg-bg-bage">
+      <h1 className="text-2xl font-bold mb-6 text-center text-main-orange">
+        Contact Us
+      </h1>
+      <ContactForm />
+    </div>
   );
 };
 
